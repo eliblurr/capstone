@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from ghana_card.urls import router as ghana_card
+from vaccine.urls import router as vaccine
 from django.urls import path, include
 from rest_framework import routers
 from django.contrib import admin
@@ -25,6 +26,7 @@ class DefaultRouter(routers.DefaultRouter):
 router = DefaultRouter()
 
 router.extend(ghana_card)
+router.extend(vaccine)
 
 urlpatterns = [
     path('', include(router.urls)),

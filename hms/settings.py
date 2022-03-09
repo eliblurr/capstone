@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'rest_framework',
-    'ghana_card'
+    'ghana_card',
+    'vaccine',
+    # 'users',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,8 @@ TEMPLATES = [
         },
     },
 ]
+
+# AUTH_USER_MODEL = 'users.User'
 
 # APPEND_SLASH = True
 
