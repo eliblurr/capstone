@@ -13,11 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from specialisation.urls import router as specialisation
+from appointment.urls import router as appointment
 from ghana_card.urls import router as ghana_card
+from pharmacy.urls import router as pharmacy
+from schedule.urls import router as schedule
 from vaccine.urls import router as vaccine
-from django.urls import path, include
+from users.urls import router as user
+from lab.urls import router as lab
 from rest_framework import routers
-from django.contrib import admin
 
 class DefaultRouter(routers.DefaultRouter):
     def extend(self, router):
@@ -25,10 +29,20 @@ class DefaultRouter(routers.DefaultRouter):
 
 router = DefaultRouter()
 
+router.extend(specialisation)
+router.extend(appointment)
 router.extend(ghana_card)
+router.extend(pharmacy)
+router.extend(schedule)
 router.extend(vaccine)
+router.extend(user)
+router.extend(lab)
+
+from django.urls import path, include
+from django.contrib import admin
 
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),    
+    path('', include('users.urls')),
 ]

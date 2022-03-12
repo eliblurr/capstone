@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'ghana_card',
     'vaccine',
-    # 'users',
+    'users',
+    'specialisation',
+    'schedule',
+    'pharmacy',
+    'lab',
+    'appointment'
 ]
 
 MIDDLEWARE = [
@@ -72,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 # APPEND_SLASH = True
 
