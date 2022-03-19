@@ -1,4 +1,5 @@
 from .models import Insurance, Bill, Payment, Visit, Prescription
+from patient.serializers import PatientSerializer
 from django.contrib.auth import get_user_model
 from users.serializers import UserSerializer
 from rest_framework import serializers
@@ -45,7 +46,8 @@ class VisitSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def to_representation(self, instance):
-        self.fields['doctor'] = UserSerializer(many=False)
         self.fields['bill'] = BillSerializer(many=False)
+        self.fields['doctor'] = UserSerializer(many=False)
+        self.fields['patient'] = PatientSerializer(many=False)
         self.fields['prescription'] = PrescriptionSerializer(many=False)
         return super(VisitSerializer, self).to_representation(instance)

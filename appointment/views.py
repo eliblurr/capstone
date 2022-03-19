@@ -17,7 +17,7 @@ class AppointmentViewSet(ModelViewSet):
     queryset = Appointment.objects.order_by('created').all()
     serializer_class = AppointmentSerializer
     filterset_fields = ['id', 'doctor']
-    search_fields = ['doctor__first_name', 'doctor__last_name', 'doctor__other_names']
+    search_fields = ['doctor__first_name', 'doctor__last_name', 'doctor__other_names', 'name']
     ordering_fields = '__all__'
 
     @action(detail=False, methods=['get'], url_path='available-epochs')

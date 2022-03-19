@@ -18,10 +18,10 @@ class GhanaCard(BaseModel):
     surname = models.CharField(null=False, blank=False, max_length=50)
     first_name = models.CharField(null=False, blank=False, max_length=50)
     nationality = models.CharField(null=False, blank=False, max_length=50)
-    previous_names = models.CharField(null=True, blank=True, max_length=200)
+    other_names = models.CharField(null=True, blank=True, max_length=200)
     place_of_issuance = models.CharField(null=False, blank=False, max_length=200)
-    personal_id_number = models.CharField(null=False, blank=False, max_length=50, unique=True)
-    document_number = models.CharField(null=False, blank=False, max_length=50, unique=True)
+    personal_id_number = models.CharField(null=False, blank=False, max_length=50, unique=True) # ghana_card_number
+    document_number = models.CharField(null=False, blank=False, max_length=50, unique=True) # tbd
     sex = models.CharField(max_length=6, choices=SEX, null=False, blank=False) 
     date_of_issuance = models.DateTimeField(auto_now_add=True)
     date_of_expiry = models.DateTimeField()

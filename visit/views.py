@@ -12,8 +12,8 @@ class VisitViewSet(ModelViewSet):
     
     queryset = Visit.objects.order_by('created').all()
     serializer_class = VisitSerializer
-    filterset_fields = ['id', 'doctor', 'appointment'] #patient
-    search_fields = ['doctor__first_name', 'doctor__last_name']
+    filterset_fields = ['id', 'doctor', 'appointment', 'patient']
+    search_fields = ['doctor__first_name', 'doctor__last_name', 'patient__first_name', 'patient__last_name', 'patient__other_names']
     ordering_fields = '__all__'
 
     @action(detail=True, methods=['delete', 'put'], url_path='prescriptions')

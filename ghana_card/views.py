@@ -7,5 +7,5 @@ class GhanaCardViewSet(ModelViewSet):
     queryset = GhanaCard.objects.order_by('created').all()
     serializer_class = GhanaCardSerializer
     filterset_fields = ['id', 'nationality', 'personal_id_number', 'sex', 'document_number',]
-    search_fields = ['surname', 'first_name', 'previous_names', 'nationality']
+    search_fields = ['surname', 'first_name', 'other_names', 'nationality']
     ordering_fields = '__all__'

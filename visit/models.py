@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 
 from pharmacy.models import Drug
+from patient.models import Patient
 
 class Visit(BaseModel):
 
@@ -15,12 +16,11 @@ class Visit(BaseModel):
     
     doctor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, related_name='visits')
     appointment = models.OneToOneField(Appointment, on_delete=models.DO_NOTHING, related_name='visit', null=True, blank=True)
-    start_time = models.TimeField(auto_now=False, auto_now_add=False)
+    patient = models.ForeignKey(Patient, on_delete=models.DO_NOTHING, related_name='visits')
     end_time = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    start_time = models.TimeField(auto_now=False, auto_now_add=False)
     date = models.DateField(auto_now=False, auto_now_add=False)
-    # bill, prescription -> related
     # records
-    # patient
 
     def __str__(self):
         return f'Dr. {self.doctor.first_name} {self.doctor.last_name}' # - {self.patient.first_name} {self.patient.last_name}

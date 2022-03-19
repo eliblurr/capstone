@@ -14,9 +14,9 @@ class PatientViewSet(ModelViewSet):
     queryset = Patient.objects.order_by('created').all()
     serializer_class = PatientSerializer
     filterset_fields = ['id', 'nationality', 'ghana_card_number', 'sex',]
-    search_fields = ['surname', 'first_name', 'last_name', 'other_names', 'nationality']
+    search_fields = ['last_name', 'first_name', 'last_name', 'other_names', 'nationality']
     ordering_fields = '__all__'
-    M_FIELDS = ['surname', 'first_name', 'nationality', 'other_names', 'sex', 'date_of_birth', 'height']
+    M_FIELDS = ['last_name', 'first_name', 'nationality', 'other_names', 'sex', 'date_of_birth', 'height']
 
     @action(detail=False, methods=['post', 'put'], url_path='ghana-card')
     def create_from_card_number(self, request, pk=None):
