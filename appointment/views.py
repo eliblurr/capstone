@@ -20,7 +20,7 @@ class AppointmentViewSet(ModelViewSet):
     search_fields = ['doctor__first_name', 'doctor__last_name', 'doctor__other_names']
     ordering_fields = '__all__'
 
-    @action(detail=False, methods=['get'], url_path='available-epochs', name='Free Appointment Slots', basename='kjhfgds')
+    @action(detail=False, methods=['get'], url_path='available-epochs')
     def get_free_epochs(self, request):
         params = request.query_params
         start, end, duration, doctor, specialisation, epochs = params.get('start',''), params.get('end',''),\
@@ -57,3 +57,6 @@ class AppointmentViewSet(ModelViewSet):
         # /appointments/available-epochs/?duration=45&start=2022-03-18&end=2022-03-19&doctor=1&specialisation=1  -> duration in minutes
 
         return Response(epochs, status=200)
+    
+    @action(detail=True, methods=['patch', 'put'], url_path='verify-appointment')
+    def verify_appointment(self, request, pk=None):pass

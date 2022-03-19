@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'schedule',
     'pharmacy',
     'lab',
-    'appointment'
+    'appointment',
+    'visit'
 ]
 
 MIDDLEWARE = [

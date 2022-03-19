@@ -16,7 +16,6 @@ class Appointment(BaseModel):
     # add patient foreign key
     # patient = models.ForeignKey('Patient', verbose_name=_('Patient'), on_delete=models.DO_NOTHING,related_name='appointments')
     doctor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, related_name='appointements')
-
     date = models.DateField(auto_now=False, auto_now_add=False)
     start_time = models.TimeField(auto_now=False, auto_now_add=False)
     end_time = models.TimeField(auto_now=False, auto_now_add=False)
