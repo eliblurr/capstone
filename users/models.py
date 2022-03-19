@@ -4,6 +4,7 @@ from specialisation.models import Specialisation
 from pharmacy.models import Pharmacy
 from .managers import UserManager
 from django.db import models
+from utils import gen_code
 
 PHONE = r'^\+1?\d{9,15}$'
 
@@ -18,7 +19,7 @@ class User(AbstractUser):
         RECEPTIONIST = 'receptionist', 'receptionist'
         LAB_TECHNICIAN = 'lab technician', 'lab technician'
     
-    employee_id = models.CharField(max_length=50, unique=True)
+    employee_id = models.CharField(max_length=50, unique=True, default=gen_code)
     other_names = models.CharField(max_length=150, null=True, blank=True)
     phone = models.CharField(max_length=50, null=True, blank=True, validators=[
             RegexValidator(
