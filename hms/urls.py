@@ -19,6 +19,7 @@ from ghana_card.urls import router as ghana_card
 from pharmacy.urls import router as pharmacy
 from schedule.urls import router as schedule
 from vaccine.urls import router as vaccine
+from patient.urls import router as patient
 from visit.urls import router as visit
 from users.urls import router as user
 from lab.urls import router as lab
@@ -36,6 +37,7 @@ router.extend(ghana_card)
 router.extend(pharmacy)
 router.extend(schedule)
 router.extend(vaccine)
+router.extend(patient)
 router.extend(visit)
 router.extend(user)
 router.extend(lab)

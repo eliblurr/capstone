@@ -30,7 +30,7 @@ class VisitViewSet(ModelViewSet):
                 data.update({'visit':instance})
 
             serializer.save()
-            
+
             return Response(serializer.data, status=201)
 
         if request.method =='DELETE':
@@ -45,19 +45,6 @@ class VisitViewSet(ModelViewSet):
                     pass
                 
             return Response(status=204)
-
-        if request.method in ['PUT', 'PATCH']:
-            pass
-
-
-    # bill
-    # doctor
-    # patient
-    # appointment
-    # prescription
-    # date
-    # start_time
-    # end_time
 
 class BillViewSet(ModelViewSet):
     
@@ -76,7 +63,7 @@ class BillViewSet(ModelViewSet):
             amount = request.query_params.get('amount', None)
 
             if not amount:
-                raise ValidationError('amoun required', code=422)
+                raise ValidationError('amount required', code=422)
 
             try: payment = instance.make_payment(amount)
             except Exception as e: raise  ValidationError(e, code=400)
