@@ -18,4 +18,8 @@ class AppointmentSerializer(serializers.ModelSerializer):
         # serialize patient here 
         return super(AppointmentSerializer, self).to_representation(instance)
 
+# class EpochSerializer(serializers.Serializer):
+#     pass
+
+# {'2022-03-18 00:00:00': [], '2022-03-19 00:00:00': [{'doctor': <User: doctor2:>, 'epochs': [{'start': '04:30:00', 'end': '05:15:00'}, {'start': '05:15:00', 'end': '06:00:00'}]}]}
         

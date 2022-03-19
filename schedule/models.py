@@ -6,16 +6,21 @@ class Break(models.Model):
     start_time = models.TimeField(null=False, blank=False)
     end_time = models.TimeField(null=False, blank=False)
 
+     # verify 24h format for start and end any make sure end > start
+
+    class Meta:
+        unique_together = ('start_time', 'end_time',)
+
 class Schedule(BaseModel):
 
     DAYS = (
-        ('monday', 'monday'),
-        ('tuesday', 'tuesday'),
-        ('wednesday', 'wednesday'),
-        ('thursday', 'thursday'),
-        ('friday', 'friday'),
-        ('saturday', 'saturday'),
-        ('sunday', 'sunday'),
+        (0, 'monday'),
+        (1, 'tuesday'),
+        (2, 'wednesday'),
+        (3, 'thursday'),
+        (4, 'friday'),
+        (5, 'saturday'),
+        (6, 'sunday'),
     )
     
     doctor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='schedule', on_delete=models.CASCADE)
@@ -23,6 +28,8 @@ class Schedule(BaseModel):
     start_time = models.TimeField(null=False, blank=False)
     end_time = models.TimeField(null=False, blank=False)
     breaks = models.ManyToManyField(Break)
+
+     # verify 24h format for start and end any make sure end > start
 
     def __str__(self):
         return f'{self.doctor}'

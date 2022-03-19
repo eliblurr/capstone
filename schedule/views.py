@@ -14,35 +14,33 @@ class ScheduleViewSet(ModelViewSet):
     search_fields = ['doctor__first_name', 'doctor__last_name']
     ordering_fields = '__all__'
 
-    @action(detail=True, methods=['put'])
+    @action(detail=True, methods=['put', 'delete'], url_path='breaks')
     def breaks(self, request, pk=None):
         'add breaks'
         instance = self.get_object()
         data = JSONParser().parse(request)
-        serializer = BreakSerializer(data=data, many=True, context={"request": request})
-        
-        serializer.is_valid(raise_exception=True)
 
-        for b in serializer.validated_data:
-            obj = instance.breaks.create(start_time=b.get('start_time'), end_time=b.get('end_time'))
-            instance.breaks.add(obj)
-        instance.save()
+        if request.method =='PUT':
 
-        return Response(serializer.data, status=201)
+            serializer = BreakSerializer(data=data, many=True, context={"request": request})            
+            serializer.is_valid(raise_exception=True)
 
-    @action(detail=True, methods=['delete'])
-    def breaks(self, request, pk=None):
-        'delete breaks'
-        instance = self.get_object()
-        data = JSONParser().parse(request)
+            for b in serializer.validated_data:
+                obj = instance.breaks.create(start_time=b.get('start_time'), end_time=b.get('end_time'))
+                instance.breaks.add(obj)
+            instance.save()
 
-        # create serializer to validate list of ids here
+            return Response(serializer.data, status=201)
 
-        for id in data:
-            try:
-                obj = Break.objects.get(pk=id)
-                if obj in instance.breaks.all():obj.delete()
-            except Break.DoesNotExist:
-                pass
-            
-        return Response(status=204)
+        if request.method =='DELETE':
+
+            # create serializer to validate list of ids here
+
+            for id in data:
+                try:
+                    obj = Break.objects.get(pk=id)
+                    if obj in instance.breaks.all():obj.delete()
+                except Break.DoesNotExist:
+                    pass
+                
+            return Response(status=204)
