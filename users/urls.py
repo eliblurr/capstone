@@ -1,4 +1,4 @@
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework import routers
 from django.urls import re_path
 from . import views
@@ -9,47 +9,9 @@ router.register('users', views.UserViewSet)
 
 urlpatterns = [
     re_path(r'register(/)?', views.UserRegistrationView.as_view(), name='register'), 
+    re_path(r'token/obtain(/)?', TokenObtainPairView.as_view(), name='token_create'), # {'employee_id': <employee-id>, 'password': <password>}
+    re_path(r'token/refresh(/)?', TokenRefreshView.as_view(), name='token_refresh'), # {'refresh': <jwt-token>}
+    re_path(r'modify-users/?(?P<id>\w+)(/)?', views.UserView.as_view(), name='modify_users'),
+    re_path(r'logout(/)?', views.LogOutView.as_view(), name='logout'),
+    re_path(r'login(/)?', views.LoginView.as_view(), name='login'),
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# router.register('lab-tests', views.LabTestViewSet)
-# from .views import UserRegistrationView
-# from django.urls import re_path
-
-# # from rest_framework_simplejwt import views as jwt_views
-
-
-# urlpatterns = [
-# #     # re_path(r'token/obtain(/)?', jwt_views.TokenObtainPairView.as_view(),name='token_create'),
-# #     # re_path(r'token/refresh(/)?', jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
-#     # re_path(r'register(/)?', views.UserRegistrationView.as_view(), name='register'),
-# #     # re_path(r'users(/)?(?P<id>\w+)?', UserListView.as_view(), name='users'),
-# #     # re_path(r'logout(/)?', UserLogOutView.as_view(), name='logout'),
-# #     # re_path(r'login(/)?', UserLoginView.as_view(), name='login'),
-# ]

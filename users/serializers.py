@@ -1,8 +1,10 @@
 from specialisation.serializers import SpecialisationSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.exceptions import ValidationError
 from pharmacy.serializers import PharmacySerializer
 from specialisation.models import Specialisation
 from .models import User, Doctor, Pharmacist
+from django.contrib.auth import authenticate
 from rest_framework import serializers
 from pharmacy.models import Pharmacy
 from django.db import transaction
@@ -73,6 +75,11 @@ class UserSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         doctor = validated_data.pop('doctor', None)
         pharmacist = validated_data.pop('pharmacist', None)
+        password = validated_data.pop('password', None)
+
+        if password:
+            instance.set_password(password)
+
         [setattr(instance, k, v) for k, v in validated_data.items()]
         instance.save()
         if instance.role==User.Types.DOCTOR and doctor:
@@ -80,12 +87,47 @@ class UserSerializer(serializers.ModelSerializer):
         if instance.role==User.Types.PHARMACIST and pharmacist:
             [setattr(instance.doctor, k, v) for k, v in pharmacist.items()]
         instance.save()
+
+        # if validated_data.get('passwod')
+        # print(validated_data)
+
         return instance
 
-# class UserLoginSerializer(serializers.Serializer):
-#     pass
+class LogOutSerializer(serializers.Serializer):
+    refresh = serializers.CharField(required=True)
 
-# JWTAuthentication
-# login - UserLoginSerializer
-# UserLogout
+# class PasswordSerializer(serializers.Serializer):
+#     password = serializers.CharField(required=True)
+
+class LoginSerializer(serializers.Serializer):
+
+    employee_id = serializers.CharField(write_only=True)
+    password = serializers.CharField(max_length=128, write_only=True)
+    access = serializers.CharField(read_only=True)
+    refresh = serializers.CharField(read_only=True)
+    user = UserSerializer(read_only=True)
+   
+    def validate(self, data):
+        employee_id = data['employee_id']
+        password = data['password']
+        user = authenticate(employee_id=employee_id, password=password)
+
+        if user is None:
+            raise serializers.ValidationError("Invalid login credentials")
+
+        if not user.is_active:
+            raise serializers.ValidationError("user account has been deactivated")
+
+        try:
+            refresh = RefreshToken.for_user(user)
+
+            return {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+                'user': user
+            }
+
+        except User.DoesNotExist:
+            raise serializers.ValidationError("Invalid login credentials")
+
 # PasswordResetSerializer
