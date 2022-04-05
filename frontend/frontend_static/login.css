@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/*body background css*/
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'poppins', sans-serif;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background:url(visit.jpeg) no-repeat;
+    background-size: cover;
+}
+
+/*login form css*/
+.form{
+    width: 350px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    color: #03045e;
+    
+}
+
+.form h1{
+    font-size: 40px;
+    margin: 40px 0;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.form p{
+    margin: 15px 0;
+    font-size:20px ;
+}
+
+.form input{
+    font-size: 16px;
+    width: 100%;
+    padding: 15px 10px;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+}
+
+.option{
+    font-size: 16px;
+    padding: 15px 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    position: relative;
+    outline: none;
+    overflow: hidden;
+} 
+
+.option option{
+    font-size: 20px;
+}
+
+.form button{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 10px 15px;
+    width: 50%;
+    border-radius: 5px;
+    border: 0;
+}
+
+.form input:hover{
+    background-color: #D3F8F9;
+    transition: all is ease 0s;
+}
+
+.form input:focus{
+    background-color: #D3F8F9;
+    transition: all is ease 0s;
+}
+
+.form button{
+    text-transform: uppercase;
+    outline: 0;
+    border-radius: 10px;
+    background: #03a9f4;
+    width:100%;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.form button:hover, .form button:active, .form button:focus{
+    background-color: #06C5CF;
+    transition: all is ease 0s;
+
+}
+
+.form .message{
+    margin:15px 0 0;
+    color: #03045e;
+    font-size: 12px;
+}
+
+.form .message a{
+    color: #06C5CF;
+    text-decoration: none;
+}
