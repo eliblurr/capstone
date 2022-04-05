@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+section{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: url(newlanding.jpg);
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+    padding: 100px;
+}
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+header .logo{
+    position: relative;
+    font-size: 2rem;
+    color: #0077b6;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    
+}
+
+.content{
+   max-width: 600px; 
+}
+
+.content .contentBx h2{
+    font-size: 1em;
+    color: #03045e;
+    line-height: 1rem;
+    position: absolute;
+    bottom: 350px;
+    display: flex;
+    font-weight: bolder;
+    
+}
+
+.content .contentBx p{
+    font-size: 1.1em;
+    color: #03045e;
+    font-weight: 300;
+    margin: 20px 0;
+    position: absolute;
+    bottom: 220px;
+    display: flex;
+}
+
+.content .contentBx a{
+    display: inline-block;
+    padding: 10px 30px;
+    background: #03a9f4;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 150px;
+    display: flex;
+}
+
+@media (max-width:991px){
+    header{
+        padding: 15px 40px;
+    }
+    section{
+        padding: 40px;
+        background: url(newlanding.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    .content .contentBx h2{
+        font-size: 2.5em;
+    }      
+
+    .content .contentBx h2{
+        line-height: 1em;
+    }
+}

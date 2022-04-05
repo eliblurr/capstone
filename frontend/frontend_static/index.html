@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Dashboard using HTML CSS and JavaScript</title>
+    <!-- MATERIAL CDN -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <!--STYLESHEET-->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <img src="newlanding.jpg" />
+            <h2>THE HOLIFIED</h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp">close</span>
+          </div>
+        </div>
+        <div class="sidebar">
+          <a href="a">
+            <span class="material-icons-sharp">grid_view</span>
+            <h3>Dashboard</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">groups</span>
+            <h3>Specialisation</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">people</span>
+            <h3>Users</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">local_hospital</span>
+            <h3>Visits</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">schedule</span>
+            <h3>Laboratory</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">book_online</span>
+            <h3>Pharmacy</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">science</span>
+            <h3>Schedule</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">medication</span>
+            <h3>Appointments</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">vaccines</span>
+            <h3>Vaccine</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">summarize</span>
+            <h3>Reports</h3>
+          </a>
+          <a href="a">
+            <span class="material-icons-sharp">logout</span>
+            <h3>Logout</h3>
+          </a>
+        </div>
+      </aside>
+      <!-------- END OF ASIDE -------->
+      <main>
+        <h1>Dashboard</h1>
+        <div class="date">
+          <input type="date" />
+        </div>
+        <div class="insights">
+          <div class="appointments">
+            <span class="material-icons-sharp">book_online</span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Appointments</h3>
+                <h1>50</h1>
+              </div>
+            </div>
+            <small class="text-muted">Last 24 hours</small>
+          </div>
+          <!-------- END OF APPOINTMENTS -------->
+          <div class="patients">
+            <span class="material-icons-sharp">personal_injury</span>
+            <div class="middle">
+              <div class="left">
+                <h3>Total Patients</h3>
+                <h1>145</h1>
+              </div>
+            </div>
+            <small class="text-muted">Last 24 hours</small>
+          </div>
+          <!-------- END OF PATIENTS -------->
+          <div class="average patient per doctor">
+            <span class="material-icons-sharp">people</span>
+            <div class="middle">
+              <div class="left">
+                <h3>Average Patient Per Doctor</h3>
+                <h1>20</h1>
+              </div>
+            </div>
+            <small class="text-muted">Last 24 hours</small>
+          </div>
+          <!-------- END OF AVERAGE PATIENT PER DOCTOR -------->
+        </div>
+        <div class="appointment-list">
+          <h2>Appointments</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Duration</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Doctor Paul</td>
+                <td>06/01/2022</td>
+                <td>Abigail Kobia</td>
+                <td>0245123458</td>
+                <td>20 minutes</td>
+                <td>Honoured</td>
+              </tr>
+              <tr>
+                <td>Doctor Mary</td>
+                <td>07/08/2022</td>
+                <td>Keziah Boamah</td>
+                <td>0550123457</td>
+                <td>45 minutes</td>
+                <td>Postponed</td>
+              </tr>
+              <tr>
+                <td>Doctor Paul</td>
+                <td>10/09/2022</td>
+                <td>Afua Ayiku</td>
+                <td>0207654561</td>
+                <td>30 minutes</td>
+                <td>Cancelled</td>
+              </tr>
+              <tr>
+                <td>Doctor Samuel</td>
+                <td>09/07/2022</td>
+                <td>Serena Sarsah</td>
+                <td>0507291755</td>
+                <td>30 minutes</td>
+                <td>Honoured</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="#">Show All</a>
+        </div>
+      </main>
+      <!------ END OF MAIN ----->
+      <div class="right">
+        <div class="top">
+          <button id="menu-btn">
+            <span class="material-icons-sharp">menu</span>
+          </button>
+          <div class="theme-toggler">
+            <span class="material-icons-sharp active">light_mode</span>
+            <span class="material-icons-sharp">dark_mode</span>
+          </div>
+          <div class="profile">
+            <div class="info">
+              <p>Hey, <b>Traci</b></p>
+              <small class="text-muted">Admin</small>
+            </div>
+            <div class="profile-photo">
+              <img src="./profile1.jpg" />
+            </div>
+          </div>
+        </div>
+        <!----END  OF TOP ----->
+        <div class="dot-month">
+          <h2>Doctor of the Month</h2>
+          <div class="doctor_member">
+            <div class="team_img">
+              <img src="doctorp.jpg" alt="doctor_member_image" />
+            </div>
+            <p class="Role">Doctor Paul</p>
+            <p>Pediatrician</p>
+          </div>
+          <div class="insights">
+            <div class="appointments">
+              <span class="material-icons-sharp">book_online</span>
+              <div class="middle">
+                <div class="left">
+                  <h3>Total Appointments = 23</h3>
+                </div>
+              </div>
+            </div>
+            <!-------- END OF APPOINTMENTS -------->
+            <div class="patients">
+              <span class="material-icons-sharp">personal_injury</span>
+              <div class="middle">
+                <div class="left">
+                  <h3>Total Patients = 59</h3>
+                </div>
+              </div>
+            </div>
+            <!-------- END OF PATIENTS -------->
+          </div>
+        </div>
+        <div class="aod">
+          <h2>Admission by Division</h2>
+          <div class="progress">
+            <svg>
+              <circle cx="38" cy="38" r="36"></circle>
+            </svg>
+            <div class="number">
+              <p>145 patients</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

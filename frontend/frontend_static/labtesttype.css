@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'poppins', sans-serif
+}
+html{
+    width: 100%;
+}
+body{
+    background-image: url(dash.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: #03045e;
+    font-weight: bolder;
+    font-weight: lighter;   
+    width: 100%;
+    max-height: 10px;
+    left:0;
+    right:0;
+}
+.The-Holified-Lab-Test-Type{
+    margin-top: 25%;
+
+    position: relative;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;   
+
+}
+
+.The-Holified-Lab-Test-Type-h1{
+    font-size: 40px;
+    text-align: right;
+    text-transform: uppercase;
+    margin: 40px 0;   
+}
+
+.The-Holified-Lab-Test-Type p{
+    font-size: 20px;
+    margin-left: 0%;
+    text-align: left;
+
+}
+ 
+.The-Holified-Lab-Test-Type input{
+    font-size: 16px;
+    padding: 15px 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+}
+
+.The-Holified-Lab-Test-Type button{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 10px 15px ;
+    width: 50%;
+    border: 0;
+    border-radius: 5px;
+    background-color: #FFF;
+}
+
+.The-Holified-Lab-Test-Type button:hover{
+    color: #03a9f4;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> The Holified Appointment Form </title>
+        <link rel="stylesheet" href="appointment.css">
+    </head>
+    <body>
+        <div class = "The-Holified-Appointment-Form">
+            <h1> The Holified Appointment Form </h1>
+            <form action="#" method="post">
+                <p> Doctor: </p>
+                <input type="text" name="Doctor" placeholder="Doctor">
+                <p> Date: </p>
+                <input type="date" name="date" placeholder="Date">
+                <p> Name: </p>
+                <input type="text" name="name" placeholder="Name">
+                <p> Start Time: </p>
+                <input type="time" name="start_time" placeholder="Start_time">
+                <p> End Time: </p>
+                <input type="time" name="end_time" placeholder="End_time">
+                <p> Phone: </p>
+                <input type="number" name="phone" placeholder="Phone">
+                <p> Status: </p>
+                <select class="option" name="Status">
+                <option disabled="disabled" selected="selected">-- Choose Option --</option>
+                <option>Pending</option>
+                <option>Booked</option>
+                <option>Confirmed</option>
+                <option>Cancelled</option>
+                <option>Rescheduled</option>
+                <option>Honoured</option>
+                </select>
+                <button type = 'submit'> Submit </button>
+            </form>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: url(dash.jpg) no-repeat;
+    background-size: cover;
+    color: #03045e;
+    font-weight: bolder;
+    font-weight: lighter;
+    font-family: 'poppins', sans-serif;   
+}
+
+.wrapper{
+    margin-top: 10%;
+}
+
+.wrapper h1{
+    /* font-family: 'Times', cursive; */
+    font-size: 52px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.Doctors{
+    display: flex;
+    font-weight: 300;
+    font-weight: bolder;
+    text-align: center;
+    width: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.Doctors .doctor_member{
+    background: #03045e;
+    margin: 10px;
+    margin-bottom: 50px;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    line-height: 20px;
+    color: #fff;
+    position: relative;
+    
+}
+
+.Doctors .doctor_member h3{
+    color: #03a9f4;
+    font-size: 26px;
+    margin-top: 50px;
+}
+
+.Doctors .doctor_member p.role{
+    color: #ccc;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 12px 0;
+}
+
+.Doctors .doctor_member .team_img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+}
+
+.Doctors .doctor_member .team_img img{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    
+
+}
