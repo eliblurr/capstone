@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     'appointment',
     'visit',
     'patient',
-    'record'
+    'record', 
+    'multiselectfield'
 ]
 
 MIDDLEWARE = [

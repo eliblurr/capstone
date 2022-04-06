@@ -1,5 +1,5 @@
-from .serializers import BillSerializer, VisitSerializer, InsuranceSerializer, PaymentSerializer, PrescriptionSerializer
-from .models import Bill, Visit, Payment, Insurance, Prescription
+from .serializers import BillSerializer, VisitSerializer, InsuranceSerializer, PaymentSerializer #, PrescriptionSerializer
+from .models import Bill, Visit, Payment, Insurance #, Prescription
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets  import  ModelViewSet
 from rest_framework.parsers import JSONParser
@@ -103,12 +103,12 @@ class PaymentViewSet(ModelViewSet):
     ordering_fields = '__all__'
     http_method_names = ['get', 'put', 'patch']
 
-class PrescriptionViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides `list` and `retrieve` actions.
-    """
-    queryset = Prescription.objects.order_by('created').all()
-    serializer_class = PrescriptionSerializer
-    filterset_fields = ['id',  'status', 'issued_by', 'visit'] #'drug', , 'drug__pharmacy'
-    search_fields = ['drug__name', 'drug__description']
-    ordering_fields = '__all__'
+# class PrescriptionViewSet(viewsets.ReadOnlyModelViewSet):
+#     """
+#     This viewset automatically provides `list` and `retrieve` actions.
+#     """
+#     queryset = Prescription.objects.order_by('created').all()
+#     serializer_class = PrescriptionSerializer
+#     filterset_fields = ['id',  'status', 'issued_by', 'visit'] #'drug', , 'drug__pharmacy'
+#     search_fields = ['drug__name', 'drug__description']
+#     ordering_fields = '__all__'

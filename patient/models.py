@@ -22,3 +22,23 @@ class Patient(BaseModel):
    
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+class Allergy(BaseModel):
+
+    TYPES = (
+        ('drug', 'drug'),
+        ('food', 'food'),
+        ('animal', 'animal'),
+        ('contact-dermatitis', 'contact-dermatitis'),
+        ('latex', 'latex'),
+        ('seasonal', 'seasonal'),
+        ('anaphylaxis', 'anaphylaxis'),
+        ('mold', 'mold'),
+        ('other', 'other'),
+    )
+
+    treatment = models.CharField(null=True, blank=True, max_length=1000)
+    symptoms = models.CharField(null=False, blank=False, max_length=500)
+    substance = models.CharField(null=False, blank=False, max_length=500)
+    allergy_type = models.CharField(max_length=50, choices=TYPES, null=False, blank=False) 
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='allergies')

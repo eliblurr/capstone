@@ -1,10 +1,10 @@
 from rest_framework.viewsets  import  ModelViewSet
 from rest_framework.decorators import action
-from .serializers import PatientSerializer
+from .serializers import PatientSerializer, AllergySerializer
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError, NotFound
 
-from .models import Patient
+from .models import Patient, Allergy
 
 from ghana_card.models import GhanaCard
 
@@ -40,4 +40,10 @@ class PatientViewSet(ModelViewSet):
         serializer.save()       
         return Response(serializer.data, status=201)
 
-            
+class AllergyViewSet(ModelViewSet):
+    
+    queryset = Allergy.objects.order_by('created').all()
+    serializer_class = AllergySerializer
+    filterset_fields = ['id', 'allergy_type', 'patient']
+    search_fields = ['symptoms', 'substance']
+    ordering_fields = '__all__'

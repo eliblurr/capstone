@@ -5,6 +5,7 @@ from django.db import models
 
 from pharmacy.models import Drug
 from patient.models import Patient
+from record.models import Record
 
 class Visit(BaseModel):
 
@@ -17,13 +18,13 @@ class Visit(BaseModel):
     doctor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, related_name='visits')
     appointment = models.OneToOneField(Appointment, on_delete=models.DO_NOTHING, related_name='visit', null=True, blank=True)
     patient = models.ForeignKey(Patient, on_delete=models.DO_NOTHING, related_name='visits')
+    records = models.ForeignKey(Record, on_delete=models.DO_NOTHING, related_name='visits')
     end_time = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     start_time = models.TimeField(auto_now=False, auto_now_add=False)
     date = models.DateField(auto_now=False, auto_now_add=False)
-    # records
-
+    
     def __str__(self):
-        return f'Dr. {self.doctor.first_name} {self.doctor.last_name}' # - {self.patient.first_name} {self.patient.last_name}
+        return f'Dr. {self.doctor.first_name} {self.doctor.last_name}'
 
 class Payment(BaseModel):
     
@@ -48,8 +49,6 @@ class Bill(BaseModel):
     insurance_coverage = models.FloatField(null=True, blank=True, default=0)
     status = models.CharField(max_length=15, choices=Status.choices, default=Status.PENDING, null=False, blank=False)
     bill_type = models.CharField(max_length=15, choices=Type.choices, null=False, blank=False)
-    
-    visit = models.OneToOneField("Visit", on_delete=models.PROTECT, related_name='bill')
     insurance = models.ForeignKey("Insurance", on_delete=models.PROTECT, related_name='bills')
 
     def paid(self):
@@ -74,20 +73,22 @@ class Insurance(BaseModel):
     def __str__(self):
         return self.name
 
-class Prescription(BaseModel):
+# visit = models.OneToOneField("Visit", on_delete=models.PROTECT, related_name='bill')
 
-    class Status(models.TextChoices):
-        OUTOFSTOCK = 'out-of-stock', 'out-of-stock'
-        OUTSOURCE = 'outsourced', 'outsourced'
-        PENDING = 'pending', 'pending'
-        ISSUED = 'issued', 'issued'
+# class Prescription(BaseModel):
+
+#     class Status(models.TextChoices):
+#         OUTOFSTOCK = 'out-of-stock', 'out-of-stock'
+#         OUTSOURCE = 'outsourced', 'outsourced'
+#         PENDING = 'pending', 'pending'
+#         ISSUED = 'issued', 'issued'
     
-    note = models.TextField(null=False, blank=False)
-    drug = models.ForeignKey(Drug, on_delete=models.DO_NOTHING, null=False, blank=False)
-    status = models.CharField(max_length=15, choices=Status.choices, default=Status.PENDING, null=False, blank=False)
-    issued_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, related_name='prescriptions')
-    visit = models.OneToOneField('Visit', on_delete=models.CASCADE, related_name='prescription')
+#     note = models.TextField(null=False, blank=False)
+#     drug = models.ForeignKey(Drug, on_delete=models.DO_NOTHING, null=False, blank=False)
+#     status = models.CharField(max_length=15, choices=Status.choices, default=Status.PENDING, null=False, blank=False)
+#     issued_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, related_name='prescriptions')
+#     visit = models.OneToOneField('Visit', on_delete=models.CASCADE, related_name='prescription')
 
-    class Meta:
-        unique_together = ('visit', 'status',)
+#     class Meta:
+#         unique_together = ('visit', 'status',)
     
