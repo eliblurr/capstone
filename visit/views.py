@@ -6,6 +6,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets
+from hms.cls import Aggregation
 
 
 class VisitViewSet(ModelViewSet):
@@ -46,7 +47,7 @@ class VisitViewSet(ModelViewSet):
                 
             return Response(status=204)
 
-class BillViewSet(ModelViewSet):
+class BillViewSet(Aggregation, ModelViewSet):
     
     queryset = Bill.objects.order_by('created').all()
     serializer_class = BillSerializer
@@ -87,7 +88,7 @@ class BillViewSet(ModelViewSet):
                 
             return Response(status=204)
 
-class InsuranceViewSet(ModelViewSet):
+class InsuranceViewSet(Aggregation, ModelViewSet):
     
     queryset = Insurance.objects.order_by('created').all()
     serializer_class = InsuranceSerializer
@@ -95,7 +96,7 @@ class InsuranceViewSet(ModelViewSet):
     search_fields = ['name', 'description']
     ordering_fields = '__all__'
 
-class PaymentViewSet(ModelViewSet):
+class PaymentViewSet(Aggregation, ModelViewSet):
     
     queryset = Payment.objects.order_by('created').all()
     serializer_class = PaymentSerializer

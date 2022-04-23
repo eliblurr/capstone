@@ -1,8 +1,9 @@
 from rest_framework.viewsets  import  ModelViewSet
 from .serializers import GhanaCardSerializer
+from hms.cls import Aggregation
 from .models import GhanaCard
 
-class GhanaCardViewSet(ModelViewSet):
+class GhanaCardViewSet(Aggregation, ModelViewSet):
     
     queryset = GhanaCard.objects.order_by('created').all()
     serializer_class = GhanaCardSerializer

@@ -1,8 +1,9 @@
 from rest_framework.viewsets  import  ModelViewSet
 from .serializers import SpecialisationSerializer
 from .models import Specialisation
+from hms.cls import Aggregation
 
-class SpecialisationViewSet(ModelViewSet):
+class SpecialisationViewSet(Aggregation, ModelViewSet):
     
     queryset = Specialisation.objects.order_by('created').all()
     serializer_class = SpecialisationSerializer

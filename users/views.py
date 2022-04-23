@@ -6,9 +6,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import  APIView
 from rest_framework import viewsets
+from hms.cls import Aggregation
 from .models import User
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
+class UserViewSet(Aggregation, viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `retrieve` actions.
     """
@@ -75,7 +76,7 @@ class LoginView(APIView):
 
         return Response(response, status=200)
 
-class UserView(APIView):
+class UserView(Aggregation, APIView):
 
     serializer_class = UserSerializer
 

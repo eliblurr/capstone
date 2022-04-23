@@ -5,8 +5,9 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import serializers
 from .models import Schedule, Break
+from hms.cls import Aggregation
 
-class ScheduleViewSet(ModelViewSet):
+class ScheduleViewSet(Aggregation, ModelViewSet):
     
     queryset = Schedule.objects.order_by('created').all()
     serializer_class = ScheduleSerializer

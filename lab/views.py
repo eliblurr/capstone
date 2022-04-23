@@ -1,8 +1,9 @@
 from .serializers import LabTestSerializer, TestTypeSerializer
 from rest_framework.viewsets  import  ModelViewSet
 from .models import LabTest, TestType
+from hms.cls import Aggregation
 
-class TestTypeViewSet(ModelViewSet):
+class TestTypeViewSet(Aggregation, ModelViewSet):
     
     queryset = TestType.objects.order_by('created').all()
     serializer_class = TestTypeSerializer
@@ -10,7 +11,7 @@ class TestTypeViewSet(ModelViewSet):
     search_fields = ['name', 'description']
     ordering_fields = '__all__'
 
-class LabTestViewSet(ModelViewSet):
+class LabTestViewSet(Aggregation, ModelViewSet):
     
     queryset = LabTest.objects.order_by('created').all()
     serializer_class = LabTestSerializer

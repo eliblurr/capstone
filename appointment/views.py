@@ -7,12 +7,13 @@ from users.serializers import UserSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from schedule.models import Schedule
+from hms.cls import Aggregation
 from .models import Appointment
 from datetime import timedelta
 
 User = get_user_model()
 
-class AppointmentViewSet(ModelViewSet):
+class AppointmentViewSet(Aggregation, ModelViewSet):
     
     queryset = Appointment.objects.order_by('created').all()
     serializer_class = AppointmentSerializer

@@ -1,8 +1,9 @@
 from .serializers import PharmacySerializer, DrugSerializer
 from rest_framework.viewsets  import  ModelViewSet
 from .models import Pharmacy, Drug
+from hms.cls import Aggregation
 
-class PharmacyViewSet(ModelViewSet):
+class PharmacyViewSet(Aggregation, ModelViewSet):
     
     queryset = Pharmacy.objects.order_by('created').all()
     serializer_class = PharmacySerializer
@@ -10,7 +11,7 @@ class PharmacyViewSet(ModelViewSet):
     search_fields = ['name', 'description']
     ordering_fields = '__all__'
 
-class DrugViewSet(ModelViewSet):
+class DrugViewSet(Aggregation, ModelViewSet):
     
     queryset = Drug.objects.order_by('created').all()
     serializer_class = DrugSerializer

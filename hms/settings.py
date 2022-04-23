@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -158,3 +159,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = '2b5b56e9e2e760'
+EMAIL_HOST_PASSWORD = '354e9e737d891f'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+
+RECORD_REQUEST_BASE_URL = os.getenv('RECORD_REQUEST_BASE_URL', 'http://127.0.0.1:8000/records/transfer') 

@@ -8,8 +8,10 @@ from .models import Patient, Allergy
 
 from ghana_card.models import GhanaCard
 
+from hms.cls import Aggregation
 
-class PatientViewSet(ModelViewSet):
+
+class PatientViewSet(Aggregation, ModelViewSet):
     
     queryset = Patient.objects.order_by('created').all()
     serializer_class = PatientSerializer
@@ -40,7 +42,7 @@ class PatientViewSet(ModelViewSet):
         serializer.save()       
         return Response(serializer.data, status=201)
 
-class AllergyViewSet(ModelViewSet):
+class AllergyViewSet(Aggregation, ModelViewSet):
     
     queryset = Allergy.objects.order_by('created').all()
     serializer_class = AllergySerializer

@@ -6,6 +6,8 @@ from django.db import models
 
 from pharmacy.models import Drug
 from patient.models import Patient
+from django.core.validators import RegexValidator
+
 
 class Record(BaseModel): 
 
@@ -90,4 +92,40 @@ class Prescription(BaseModel):
                 name='not_both_null'
             )
         ]
+
+PHONE = r'^\+1?\d{9,15}$'    
+EMAIL = r'^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$'
+
+class RecordRequest(BaseModel):
     
+    class Status(models.TextChoices):
+        DECLINED = 'declined', 'declined'
+        ACCEPTED = 'accepted', 'accepted'
+        PENDING = 'pending', 'pending'
+
+    class RECORDTYPE(models.TextChoices):
+        VISIT = 'visit', 'visit'
+        LAB = 'lab', 'lab'
+        PENDING = 'pending', 'pending'
+
+    name = models.CharField(max_length=100, null=False, blank=False)
+    email = models.CharField(max_length=50, null=True, blank=True, validators=[
+            RegexValidator(
+                regex=EMAIL,
+                message='invalid email format',
+            ),
+        ]
+    )
+    phone = models.CharField(max_length=50, null=True, blank=True, validators=[
+            RegexValidator(
+                regex=PHONE,
+                message='invalid phone format',
+            ),
+        ]
+    )
+    subdomain_id = models.CharField(max_length=100, null=True, blank=True)
+    status = models.CharField(max_length=15, choices=Status.choices, default=Status.PENDING, null=False, blank=False)
+    record_type = models.CharField(max_length=15, choices=RECORDTYPE.choices, null=False, blank=False)
+    ghana_card_no = models.CharField(max_length=100, null=False, blank=False)
+    start_date = models.DateField(null=False, blank=False)
+    end_date = models.DateField(null=False, blank=False)

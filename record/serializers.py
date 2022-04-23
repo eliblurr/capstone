@@ -1,6 +1,6 @@
+from .models import Record, Prescription, RecordRequest
 from patient.serializers import PatientSerializer
 from django.contrib.auth import get_user_model
-from .models import Record, Prescription
 from users.serializers import UserSerializer
 from rest_framework import serializers
 
@@ -27,3 +27,11 @@ class RecordSerializer(serializers.ModelSerializer):
         self.fields['patient'] = PatientSerializer(many=False)
         self.fields['prescriptions'] = PrescriptionSerializer(many=False)
         return super(RecordSerializer, self).to_representation(instance)
+
+class RecordRequestSerializer(serializers.ModelSerializer):
+
+    status = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = RecordRequest
+        fields = '__all__'
