@@ -22,6 +22,7 @@ class Visit(BaseModel):
     end_time = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     start_time = models.TimeField(auto_now=False, auto_now_add=False)
     date = models.DateField(auto_now=False, auto_now_add=False)
+    # currently_active
     
     def __str__(self):
         return f'Dr. {self.doctor.first_name} {self.doctor.last_name}'
