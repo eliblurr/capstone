@@ -46,7 +46,7 @@ class VisitSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def to_representation(self, instance):
-        self.fields['bill'] = BillSerializer(many=False)
+        self.fields['bill'] = BillSerializer(many=False, required=False)
         self.fields['doctor'] = UserSerializer(many=False)
         self.fields['patient'] = PatientSerializer(many=False)
         # self.fields['prescription'] = PrescriptionSerializer(many=False)

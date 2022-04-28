@@ -20,12 +20,21 @@ class Visit(BaseModel):
     patient = models.ForeignKey(Patient, on_delete=models.DO_NOTHING, related_name='visits')
     records = models.ForeignKey(Record, on_delete=models.DO_NOTHING, related_name='visits')
     end_time = models.TimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    bill = models.ForeignKey("Bill", on_delete=models.CASCADE, related_name='visit')
     start_time = models.TimeField(auto_now=False, auto_now_add=False)
     date = models.DateField(auto_now=False, auto_now_add=False)
-    # currently_active
-    
+    active_session = models.BooleanField(default=True)
+
     def __str__(self):
         return f'Dr. {self.doctor.first_name} {self.doctor.last_name}'
+
+    def save(self, *args, **kwargs):
+        if self.active_session:
+            qs = type(self).objects.filter(active_session=True, patient=self.patient, doctor=self.doctor)
+            if self.pk:
+                qs = qs.exclude(pk=self.pk)
+            qs.update(active_session=False)
+        super().save(*args, **kwargs)
 
 class Payment(BaseModel):
     
@@ -50,7 +59,7 @@ class Bill(BaseModel):
     insurance_coverage = models.FloatField(null=True, blank=True, default=0)
     status = models.CharField(max_length=15, choices=Status.choices, default=Status.PENDING, null=False, blank=False)
     bill_type = models.CharField(max_length=15, choices=Type.choices, null=False, blank=False)
-    insurance = models.ForeignKey("Insurance", on_delete=models.PROTECT, related_name='bills')
+    insurance = models.ForeignKey("Insurance", on_delete=models.SET_NULL, related_name='bills', null=True, blank=True)
 
     def paid(self):
         return sum([payment.amount for payment in self.payments])
@@ -65,6 +74,9 @@ class Bill(BaseModel):
             raise ValueError('insufficient credit')
         payment = Payment.objects.create(amount=amount, bill=self)
         return payment
+
+    def __str__(self):
+        return f'{self.bill_type}({self.total})'
 
 class Insurance(BaseModel):
     
