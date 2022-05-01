@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
+import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-xh19h-@@1mmqt(z3vw5g)@_lxg%c(ggbsc2czb&s2042&kew=_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
 
@@ -174,3 +175,4 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
 
 RECORD_REQUEST_BASE_URL = os.getenv('RECORD_REQUEST_BASE_URL', 'http://127.0.0.1:8000/records/transfer') 
+django_heroku.settings(locals())
