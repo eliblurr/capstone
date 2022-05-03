@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
-import django_heroku
+# import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -117,10 +117,10 @@ WSGI_APPLICATION = 'hms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'postgres',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -178,4 +178,4 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
 
 RECORD_REQUEST_BASE_URL = os.getenv('RECORD_REQUEST_BASE_URL', 'http://127.0.0.1:8000/records/transfer') 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
