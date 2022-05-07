@@ -19,8 +19,11 @@ class User(AbstractUser):
         RECEPTIONIST = 'receptionist', 'receptionist'
         LAB_TECHNICIAN = 'lab technician', 'lab technician'
     
+    
     employee_id = models.CharField(max_length=50, unique=True, default=gen_code)
     other_names = models.CharField(max_length=150, null=True, blank=True)
+    first_name = models.CharField(max_length=150, null=True, blank=True)
+    last_name = models.CharField(max_length=150, null=True, blank=True)
     phone = models.CharField(max_length=50, null=True, blank=True, validators=[
             RegexValidator(
                 regex=PHONE,

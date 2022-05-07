@@ -1,6 +1,6 @@
-from .serializers import PrescriptionSerializer, RecordSerializer, RecordRequestSerializer
+from .serializers import PrescriptionSerializer, RecordSerializer, RecordRequestSerializer, VitalsSerializer
 from hms.settings import SECRET_KEY, RECORD_REQUEST_BASE_URL
-from .models import Record, Prescription, RecordRequest
+from .models import Record, Prescription, RecordRequest, Vitals
 from rest_framework.exceptions import ValidationError
 from rest_framework.viewsets  import  ModelViewSet
 from rest_framework.response import Response
@@ -122,3 +122,11 @@ class RecordRequestViewSet(Aggregation, ModelViewSet):
             raise ValidationError('something went wrong')
 
         return Response('success', 200)
+
+class VitalsViewSet(ModelViewSet):
+    
+    queryset = Vitals.objects.order_by('created').all()
+    serializer_class = VitalsSerializer
+    filterset_fields = ['id', 'patient', 'date']
+    search_fields = ['patient__first_name', 'patient__last_name' ]
+    ordering_fields = '__all__'

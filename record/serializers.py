@@ -1,4 +1,4 @@
-from .models import Record, Prescription, RecordRequest
+from .models import Record, Prescription, RecordRequest, Vitals
 from patient.serializers import PatientSerializer
 from django.contrib.auth import get_user_model
 from users.serializers import UserSerializer
@@ -34,4 +34,11 @@ class RecordRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RecordRequest
+        fields = '__all__'
+
+class VitalsSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = Vitals
         fields = '__all__'

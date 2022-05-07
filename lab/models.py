@@ -16,7 +16,7 @@ class LabTest(BaseModel):
     test_type = models.ForeignKey('TestType', related_name='labs', on_delete=models.CASCADE)
     lab_technician = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='labs', on_delete=models.CASCADE)
     visit = models.ForeignKey(Visit, related_name='labs', on_delete=models.CASCADE)
-    # record
+    record = models.CharField(max_length = 5000, null=False, blank=False)
 
     def __str__(self):
         return f'{self.test_type.name}'

@@ -69,6 +69,22 @@ class Record(BaseModel):
     def __str__(self):
         return f'{self.patient.first_name} {self.patient.last_name}'
 
+class Vitals(BaseModel):
+
+    date = models.DateField(auto_now_add=False)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='vitals')
+    weight = models.CharField(null=False, blank=False, max_length=10)
+    height = models.CharField(null=False, blank=False, max_length=10)
+    temperature = models.CharField(null=False, blank=False, max_length=10)
+    blood_pressure = models.CharField(null=False, blank=False, max_length=10)
+    SpO2 = models.FloatField(null=False, blank=False, max_length=10)
+    BpM = models.CharField(null=False, blank=False, max_length=10)
+    notes = models.CharField(null=False, blank=False, max_length=1000)
+    record = models.ForeignKey(Record, on_delete=models.CASCADE, related_name='vitals')  
+
+    def __str__(self):
+        return f'{self.patient.first_name} {self.patient.last_name}'
+
 class Prescription(BaseModel):
 
     class Status(models.TextChoices):
