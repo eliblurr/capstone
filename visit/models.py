@@ -70,7 +70,7 @@ class Bill(BaseModel):
     def make_payment(self, amount):
         if self.debit() > amount:
             raise ValueError('amount exceeds debit')
-        if self.bill_type==Type.LUMPSUM and self.debit()!=amount:
+        if self.bill_type==self.Type.LUMPSUM and self.debit()!=amount:
             raise ValueError('insufficient credit')
         payment = Payment.objects.create(amount=amount, bill=self)
         return payment
