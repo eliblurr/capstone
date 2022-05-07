@@ -15,7 +15,7 @@ class LabTestSerializer(serializers.ModelSerializer):
     lab_technician = serializers.PrimaryKeyRelatedField(many=False, queryset=User.objects.filter(role=User.Types.LAB_TECHNICIAN).all(), required=True)
 
     class Meta:
-        model = TestType
+        model = LabTest
         fields = '__all__'
 
     def to_representation(self, instance):
